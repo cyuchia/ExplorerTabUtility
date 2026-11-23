@@ -1,3 +1,4 @@
+using ExplorerTabUtility.Helpers;
 using System;
 using System.Linq;
 using System.Windows;
@@ -7,7 +8,7 @@ using System.ComponentModel;
 
 namespace ExplorerTabUtility.UI.Converters;
 
-public class EnumDescriptionConverter : IValueConverter
+public class EnumDescriptionConverter : IValueConverter, IMultiValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
@@ -20,9 +21,11 @@ public class EnumDescriptionConverter : IValueConverter
         var descriptionAttribute = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false)
             .FirstOrDefault() as DescriptionAttribute;
 
-        return descriptionAttribute?.Description ?? valueStr;
+        return UiText.Translate(descriptionAttribute?.Description ?? valueStr);
     }
 
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => Convert(values[0], targetType, parameter, culture);
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotSupportedException();
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return value;

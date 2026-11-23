@@ -1,0 +1,538 @@
+{
+  "L001": [
+    "让 Windows 资源管理器的标签页更好用",
+    "Enhance your Windows File Explorer experience"
+  ],
+  "L002": [
+    "在 GitHub 上点亮星标",
+    "Star on GitHub"
+  ],
+  "L003": [
+    "支持项目",
+    "Support the Project"
+  ],
+  "L004": [
+    "如果这个工具对你有帮助，可以通过以下方式支持开发：",
+    "If you find this utility helpful, consider supporting its development through one of these options:"
+  ],
+  "L005": [
+    "开发者",
+    "Developer"
+  ],
+  "L006": [
+    "项目支持者",
+    "Current Supporters"
+  ],
+  "L007": [
+    "感谢所有支持这个项目的朋友！",
+    "Thank you to all the amazing people who support this project!"
+  ],
+  "L008": [
+    "成为项目的第一位支持者！",
+    "Be the first to support this project!"
+  ],
+  "L009": [
+    "你的支持让项目得以持续维护",
+    "Your support helps keep this project alive"
+  ],
+  "L010": [
+    "启用或禁用这组快捷键",
+    "Enable or disable this profile"
+  ],
+  "L011": [
+    "快捷键配置名称",
+    "Name of the profile"
+  ],
+  "L012": [
+    "要监听的键盘或鼠标按键。点击此处录入新的组合键。",
+    "Keyboard or mouse keys to listen for. Click to record a new key combination."
+  ],
+  "L013": [
+    "快捷键生效范围：全局，或仅在资源管理器处于前台时",
+    "Scope of the hotkeys: Global (anywhere) or only when File Explorer is focused"
+  ],
+  "L014": [
+    "按下快捷键后执行的操作",
+    "Action to perform when the hotkeys are pressed"
+  ],
+  "L015": [
+    "展开更多选项",
+    "Show more options"
+  ],
+  "L016": [
+    "删除这组快捷键",
+    "Delete this profile"
+  ],
+  "L017": [
+    "按下快捷键后打开的位置（文件夹、文件、网址或 CLSID）",
+    "Path to open when the hotkeys are pressed. (folder, file, website, CLSID)"
+  ],
+  "L018": [
+    "执行操作前的延迟，单位为毫秒",
+    "Delay in milliseconds before performing the action"
+  ],
+  "L019": [
+    "延迟",
+    "Delay"
+  ],
+  "L020": [
+    "拦截按键",
+    "Handled"
+  ],
+  "L021": [
+    "阻止其他应用继续处理这组快捷键",
+    "Prevent further processing of the hotkeys in other applications"
+  ],
+  "L022": [
+    "标签页",
+    "Tab"
+  ],
+  "L023": [
+    "在新标签页中打开",
+    "Open as tab instead of a new window"
+  ],
+  "L024": [
+    "打开应用菜单",
+    "Open application menu"
+  ],
+  "L025": [
+    "设置键盘和鼠标快捷键",
+    "Configure keyboard and mouse shortcuts"
+  ],
+  "L026": [
+    "🗲  快捷键",
+    "🗲  Shortcuts"
+  ],
+  "L027": [
+    "设置应用选项",
+    "Configure application settings"
+  ],
+  "L028": [
+    "  偏好设置",
+    "  Preferences"
+  ],
+  "L029": [
+    "查看应用信息与支持方式",
+    "About the application and support options"
+  ],
+  "L030": [
+    "  关于",
+    "  About"
+  ],
+  "L031": [
+    "快捷键",
+    "Shortcuts"
+  ],
+  "L032": [
+    "新建",
+    "NEW"
+  ],
+  "L033": [
+    "新建快捷键配置",
+    "Create a new profile"
+  ],
+  "L034": [
+    "导入",
+    "IMPORT"
+  ],
+  "L035": [
+    "从文件导入快捷键配置",
+    "Import profiles from a file"
+  ],
+  "L036": [
+    "导出",
+    "EXPORT"
+  ],
+  "L037": [
+    "将快捷键配置导出到文件",
+    "Export profiles to a file"
+  ],
+  "L038": [
+    "保存",
+    "SAVE"
+  ],
+  "L039": [
+    "保存所有快捷键配置",
+    "Persist all profile changes"
+  ],
+  "L040": [
+    "自动保存",
+    "Auto save"
+  ],
+  "L041": [
+    "关闭设置窗口时自动保存快捷键配置",
+    "Automatically save profiles when closing the window"
+  ],
+  "L042": [
+    "偏好设置",
+    "Preferences"
+  ],
+  "L043": [
+    "应用设置",
+    "Application Settings"
+  ],
+  "L044": [
+    "启动时检查更新",
+    "Check for updates at startup"
+  ],
+  "L045": [
+    "启动时检查官方更新；安装官方更新会覆盖此定制程序。",
+    "Check for official updates at startup. Installing an official update will replace this customized application."
+  ],
+  "L046": [
+    "主题兼容模式",
+    "Theme compatibility mode"
+  ],
+  "L047": [
+    "使用另一种窗口隐藏方式，保留自定义资源管理器主题。\n仅在主题显示异常时启用。",
+    "Use alternative window hiding method that preserves your custom File-Explorer theme.\nEnable this if you have theme-related issues"
+  ],
+  "L048": [
+    "保存关闭记录",
+    "Save closed history"
+  ],
+  "L049": [
+    "保存已关闭窗口的记录，以便重新打开或通过标签页搜索查找",
+    "Save closed windows history so you can reopen them later (ReopenClosed, Tab search)"
+  ],
+  "L050": [
+    "恢复之前的窗口",
+    "Restore previous windows"
+  ],
+  "L051": [
+    "重启或崩溃后恢复之前打开的窗口",
+    "Restore previously opened windows after restart or crash"
+  ],
+  "L052": [
+    "隐藏托盘图标",
+    "Hide tray icon"
+  ],
+  "L053": [
+    "隐藏系统托盘中的图标",
+    "Hide the system tray icon"
+  ],
+  "L054": [
+    "关于",
+    "About"
+  ],
+  "L055": [
+    "窗口转标签页",
+    "Window Hook"
+  ],
+  "L056": [
+    "复用已有标签页",
+    "Reuse Tabs"
+  ],
+  "L057": [
+    "键盘快捷键",
+    "Keyboard Hook"
+  ],
+  "L058": [
+    "鼠标快捷键",
+    "Mouse Hook"
+  ],
+  "L059": [
+    "清空已关闭窗口的记录",
+    "Clear closed windows history"
+  ],
+  "L060": [
+    "启用或禁用键盘快捷键",
+    "Enable or disable keyboard shortcuts"
+  ],
+  "L061": [
+    "启用或禁用鼠标快捷键",
+    "Enable or disable mouse shortcuts"
+  ],
+  "L062": [
+    "将新开的资源管理器窗口自动转为标签页",
+    "Toggle automatic redirection of new Explorer windows to tabs"
+  ],
+  "L063": [
+    "同一目录已打开时切换到已有标签页",
+    "When enabled, navigates to existing tabs instead of opening duplicate tabs"
+  ],
+  "L064": [
+    "开机自动启动",
+    "Start with Windows"
+  ],
+  "L065": [
+    "登录 Windows 时自动启动 Explorer Tab Utility",
+    "Automatically start Explorer Tab Utility when Windows starts"
+  ],
+  "L066": [
+    "检查更新",
+    "Check for updates"
+  ],
+  "L067": [
+    "检查官方新版本；安装更新后可能需要重新应用汉化",
+    "Check if a newer version of Explorer Tab Utility is available"
+  ],
+  "L068": [
+    "设置",
+    "Settings"
+  ],
+  "L069": [
+    "打开设置窗口",
+    "Open the settings window to configure the application"
+  ],
+  "L070": [
+    "退出",
+    "Exit"
+  ],
+  "L071": [
+    "退出应用并停止窗口、键盘和鼠标监听",
+    "Close Explorer Tab Utility and stop all hooks"
+  ],
+  "L072": [
+    "程序已经在运行。",
+    "Another instance is already running."
+  ],
+  "L073": [
+    "请在系统托盘中找到程序图标。",
+    "Check in System Tray Icons."
+  ],
+  "L074": [
+    "确定要清空已关闭窗口的记录吗？",
+    "Are you sure you want to clear the closed windows history?"
+  ],
+  "L075": [
+    "确认清空记录",
+    "Confirm Clear History"
+  ],
+  "L076": [
+    "你可以按 {profile!.HotKeys!.HotKeysToString(profile.IsDoubleClick)} 再次显示设置窗口",
+    "You can show the app again by pressing {profile!.HotKeys!.HotKeysToString(profile.IsDoubleClick)}"
+  ],
+  "L077": [
+    "请先设置一个用于显示或隐藏设置窗口的快捷键，然后再隐藏托盘图标。",
+    "Cannot hide tray icon if no hotkey is configured to toggle visibility."
+  ],
+  "L078": [
+    "是否恢复之前打开的窗口？",
+    "Do you want to restore previously opened windows?"
+  ],
+  "L079": [
+    "Explorer Tab Utility：将新窗口自动转为标签页",
+    "Explorer Tab Utility: Force new windows to tabs."
+  ],
+  "L080": [
+    "JSON 文件 (*.json)|*.json|所有文件|*.*",
+    "JSON files (*.json)|*.json|All Files|*.*"
+  ],
+  "L081": [
+    "在新标签页或窗口中打开指定位置。",
+    "Open a new tab/window with the specified location."
+  ],
+  "L082": [
+    "复制当前标签页。",
+    "Duplicate the current tab."
+  ],
+  "L083": [
+    "重新打开最近关闭的位置。",
+    "Reopen the last closed location."
+  ],
+  "L084": [
+    "搜索并切换已打开的标签页。",
+    "Open tab search popup to find and switch between tabs."
+  ],
+  "L085": [
+    "后退到上一个位置。",
+    "Navigate back."
+  ],
+  "L086": [
+    "打开上一级文件夹。",
+    "Navigate up."
+  ],
+  "L087": [
+    "前进到下一个位置。",
+    "Navigate forward."
+  ],
+  "L088": [
+    "指定用于接收新标签页的窗口。",
+    "Mark the window that will receive the new tabs."
+  ],
+  "L089": [
+    "切换自动将新窗口转为标签页的功能。",
+    "Toggle the window hook."
+  ],
+  "L090": [
+    "切换复用已有标签页的功能。",
+    "Toggle the reuse tabs option."
+  ],
+  "L091": [
+    "显示或隐藏应用设置窗口。",
+    "Show/Hide the app."
+  ],
+  "L092": [
+    "将当前标签页分离为独立窗口。",
+    "Detach the current tab."
+  ],
+  "L093": [
+    "将当前窗口贴靠到屏幕右侧。",
+    "Snap the current window to the right."
+  ],
+  "L094": [
+    "将当前窗口贴靠到屏幕左侧。",
+    "Snap the current window to the left."
+  ],
+  "L095": [
+    "将当前窗口贴靠到屏幕上方。",
+    "Snap the current window to the top."
+  ],
+  "L096": [
+    "将当前窗口贴靠到屏幕下方。",
+    "Snap the current window to the bottom."
+  ],
+  "L097": [
+    "跟随系统",
+    "Follow system"
+  ],
+  "L098": [
+    "界面语言",
+    "Language"
+  ],
+  "L099": [
+    "登录 Windows 后在后台启动，不打开设置窗口。",
+    "Start in the background when you sign in to Windows."
+  ],
+  "L100": [
+    "字体跟随 Windows 系统设置。",
+    "Fonts follow Windows system settings."
+  ],
+  "L107": [
+    "无法保存开机启动设置：",
+    "Could not save startup settings: "
+  ],
+  "L108": [
+    "配置未保存，请检查磁盘空间和权限：",
+    "Settings were not saved. Check disk space and permissions: "
+  ],
+  "L109": [
+    "配置读取失败，已从备份恢复。",
+    "Settings were recovered from the backup."
+  ],
+  "L110": [
+    "全局",
+    "Global"
+  ],
+  "L111": [
+    "资源管理器",
+    "File Explorer"
+  ],
+  "L112": [
+    "打开位置",
+    "Open"
+  ],
+  "L113": [
+    "复制标签页",
+    "Duplicate"
+  ],
+  "L114": [
+    "重新打开已关闭",
+    "Reopen closed"
+  ],
+  "L115": [
+    "搜索标签页",
+    "Search tabs"
+  ],
+  "L116": [
+    "后退",
+    "Back"
+  ],
+  "L117": [
+    "上一级",
+    "Up"
+  ],
+  "L118": [
+    "前进",
+    "Forward"
+  ],
+  "L119": [
+    "设为目标窗口",
+    "Set target window"
+  ],
+  "L120": [
+    "切换窗口转标签页",
+    "Toggle window hook"
+  ],
+  "L121": [
+    "切换标签页复用",
+    "Toggle tab reuse"
+  ],
+  "L122": [
+    "显示或隐藏设置",
+    "Show / hide settings"
+  ],
+  "L123": [
+    "分离标签页",
+    "Detach tab"
+  ],
+  "L124": [
+    "窗口靠右",
+    "Snap right"
+  ],
+  "L125": [
+    "窗口靠左",
+    "Snap left"
+  ],
+  "L126": [
+    "窗口靠上",
+    "Snap up"
+  ],
+  "L127": [
+    "窗口靠下",
+    "Snap down"
+  ],
+  "L128": [
+    "确定",
+    "OK"
+  ],
+  "L129": [
+    "取消",
+    "Cancel"
+  ],
+  "L130": [
+    "是",
+    "Yes"
+  ],
+  "L131": [
+    "否",
+    "No"
+  ],
+  "L132": [
+    "你可以按 {0} 再次显示设置窗口",
+    "Press {0} to show the settings window again."
+  ],
+  "TextCut": [
+    "剪切",
+    "Cut"
+  ],
+  "TextCopy": [
+    "复制",
+    "Copy"
+  ],
+  "TextPaste": [
+    "粘贴",
+    "Paste"
+  ],
+  "TextSelectAll": [
+    "全选",
+    "Select all"
+  ],
+  "AlreadyRunning": [
+    "程序已经在运行。请在系统托盘中找到程序图标。",
+    "The application is already running. Find its icon in the system tray."
+  ],
+  "PlaceholderName": [
+    "名称",
+    "Name"
+  ],
+  "PlaceholderShortcut": [
+    "快捷键",
+    "Shortcut"
+  ],
+  "PlaceholderLocation": [
+    "位置",
+    "Location"
+  ]
+}

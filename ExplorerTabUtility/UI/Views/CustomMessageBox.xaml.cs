@@ -110,20 +110,20 @@ public partial class CustomMessageBox : Window
         switch (buttons)
         {
             case MessageBoxButton.OK:
-                AddButton("OK", MessageBoxResult.OK, defaultButton is MessageBoxResult.None or MessageBoxResult.OK);
+                AddButton(UiText.Translate("确定"), MessageBoxResult.OK, defaultButton is MessageBoxResult.None or MessageBoxResult.OK);
                 break;
             case MessageBoxButton.OKCancel:
-                AddButton("OK", MessageBoxResult.OK, defaultButton is MessageBoxResult.None or MessageBoxResult.OK);
-                AddButton("Cancel", MessageBoxResult.Cancel, defaultButton is MessageBoxResult.Cancel);
+                AddButton(UiText.Translate("确定"), MessageBoxResult.OK, defaultButton is MessageBoxResult.None or MessageBoxResult.OK);
+                AddButton(UiText.Translate("取消"), MessageBoxResult.Cancel, defaultButton is MessageBoxResult.Cancel);
                 break;
             case MessageBoxButton.YesNo:
-                AddButton("Yes", MessageBoxResult.Yes, defaultButton is MessageBoxResult.None or MessageBoxResult.Yes);
-                AddButton("No", MessageBoxResult.No, defaultButton is MessageBoxResult.No);
+                AddButton(UiText.Translate("是"), MessageBoxResult.Yes, defaultButton is MessageBoxResult.None or MessageBoxResult.Yes);
+                AddButton(UiText.Translate("否"), MessageBoxResult.No, defaultButton is MessageBoxResult.No);
                 break;
             case MessageBoxButton.YesNoCancel:
-                AddButton("Yes", MessageBoxResult.Yes, defaultButton is MessageBoxResult.None or MessageBoxResult.Yes);
-                AddButton("No", MessageBoxResult.No, defaultButton is MessageBoxResult.No);
-                AddButton("Cancel", MessageBoxResult.Cancel, defaultButton is MessageBoxResult.Cancel);
+                AddButton(UiText.Translate("是"), MessageBoxResult.Yes, defaultButton is MessageBoxResult.None or MessageBoxResult.Yes);
+                AddButton(UiText.Translate("否"), MessageBoxResult.No, defaultButton is MessageBoxResult.No);
+                AddButton(UiText.Translate("取消"), MessageBoxResult.Cancel, defaultButton is MessageBoxResult.Cancel);
                 break;
         }
     }

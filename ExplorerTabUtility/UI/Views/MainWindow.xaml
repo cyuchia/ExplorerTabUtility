@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:ExplorerTabUtility.UI.Views"
         xmlns:managers="clr-namespace:ExplorerTabUtility.Managers"
+        Language="{DynamicResource UiLanguage}"
+        FontFamily="{DynamicResource DefaultFontFamily}"
+        UseLayoutRounding="True"
         Title="Explorer Tab Utility"
         Width="850" Height="600"
         MinWidth="700" MinHeight="175"
@@ -36,7 +39,7 @@
 
                     <!-- Menu Button -->
                     <ToggleButton x:Name="DrawerButton" Grid.Column="0" Style="{StaticResource ToggleButtonIconStyle}" Margin="6,0,0,0"
-                                  Content="&#x2630;" Focusable="False" ToolTip="Open application menu" />
+                                  Content="&#x2630;" Focusable="False" ToolTip="{DynamicResource L024}" />
 
                     <!-- Window Title -->
                     <TextBlock Grid.Column="1" Text="Explorer Tab Utility" VerticalAlignment="Center" Margin="8,0"
@@ -105,14 +108,14 @@
                                         <BeginStoryboard Storyboard="{StaticResource CloseDrawerStoryboard}"/>
                                     </EventTrigger>
                                 </ListBox.Triggers>
-                                <ListBoxItem ToolTip="Configure keyboard and mouse shortcuts">
-                                    <TextBlock Text="&#x1F5F2;  Shortcuts" VerticalAlignment="Center" />
+                                <ListBoxItem ToolTip="{DynamicResource L025}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#x1F5F2;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="0,0,10,0" /><TextBlock Text="{DynamicResource L031}" VerticalAlignment="Center" /></StackPanel>
                                 </ListBoxItem>
-                                <ListBoxItem ToolTip="Configure application settings">
-                                    <TextBlock Text="&#xE713;  Preferences" VerticalAlignment="Center" />
+                                <ListBoxItem ToolTip="{DynamicResource L027}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE713;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="0,0,10,0" /><TextBlock Text="{DynamicResource L042}" VerticalAlignment="Center" /></StackPanel>
                                 </ListBoxItem>
-                                <ListBoxItem ToolTip="About the application and support options">
-                                    <TextBlock Text="&#xE939;  About" VerticalAlignment="Center" />
+                                <ListBoxItem ToolTip="{DynamicResource L029}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE939;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="0,0,10,0" /><TextBlock Text="{DynamicResource L054}" VerticalAlignment="Center" /></StackPanel>
                                 </ListBoxItem>
                             </ListBox>
                         </DockPanel>
@@ -166,7 +169,7 @@
                                                   Color="{StaticResource ShadowColor}" />
                             </TabControl.Effect>
                             <!-- Shortcuts Tab -->
-                            <TabItem Header="Shortcuts" Visibility="Collapsed">
+                            <TabItem Header="{DynamicResource L031}" Visibility="Collapsed">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -177,20 +180,20 @@
                                     <DockPanel Grid.Row="0" Margin="16,8" LastChildFill="False">
                                         <!-- Action Buttons -->
                                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                                            <Button x:Name="BtnNewProfile" Content="NEW" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="Create a new profile" />
-                                            <Button x:Name="BtnImport" Content="IMPORT" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="Import profiles from a file" />
-                                            <Button x:Name="BtnExport" Content="EXPORT" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="Export profiles to a file" />
-                                            <Button x:Name="BtnSave" Content="SAVE" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="Persist all profile changes" />
+                                            <Button x:Name="BtnNewProfile" Content="{DynamicResource L032}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{DynamicResource L033}" />
+                                            <Button x:Name="BtnImport" Content="{DynamicResource L034}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{DynamicResource L035}" />
+                                            <Button x:Name="BtnExport" Content="{DynamicResource L036}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{DynamicResource L037}" />
+                                            <Button x:Name="BtnSave" Content="{DynamicResource L038}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{DynamicResource L039}" />
                                         </StackPanel>
 
                                         <!-- Save on Exit Toggle -->
                                         <CheckBox DockPanel.Dock="Right" x:Name="CbAutoSaveProfiles"
-                                                  Content="Auto save" Style="{StaticResource CustomCheckBoxStyle}"
-                                                  ToolTip="Automatically save profiles when closing the window" />
+                                                  Content="{DynamicResource L040}" Style="{StaticResource CustomCheckBoxStyle}"
+                                                  ToolTip="{DynamicResource L041}" />
                                     </DockPanel>
 
                                     <!-- Profiles Panel -->
@@ -203,33 +206,46 @@
                             </TabItem>
 
                             <!-- Preferences Tab -->
-                            <TabItem Header="Preferences" Visibility="Collapsed">
-                                <StackPanel Margin="16, 8">
-                                    <GroupBox Header="Application Settings"
+                            <TabItem Header="{DynamicResource L042}" Visibility="Collapsed">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Style="{StaticResource CustomScrollViewerStyle}">
+                                <StackPanel Margin="16,8,20,16">
+                                    <GroupBox Header="{DynamicResource L043}"
                                               Style="{StaticResource CustomGroupBoxStyle}">
                                         <StackPanel Margin="8">
-                                            <CheckBox x:Name="CbAutoUpdate" Content="Auto update"
-                                                      Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="Automatically check for updates on startup" />
-                                            <CheckBox x:Name="CbThemeIssue" Content="I have theme issues"
-                                                      Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="Use alternative window hiding method that preserves your custom File-Explorer theme.&#x0a;Enable this if you have theme-related issues" />
-                                            <CheckBox x:Name="CbSaveClosedHistory" Content="Save closed history"
-                                                      Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="Save closed windows history so you can reopen them later (ReopenClosed, Tab search)" />
-                                            <CheckBox x:Name="CbRestorePreviousWindows" Content="Restore previous windows"
-                                                      Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="Restore previously opened windows after restart or crash" />
-                                            <CheckBox x:Name="CbHideTrayIcon" Content="Hide tray icon"
-                                                      Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="Hide the system tray icon" />
+                                            <CheckBox x:Name="CbStartup" Content="{DynamicResource L064}"
+                                                      MinHeight="40" Style="{StaticResource CustomCheckBoxStyle}"
+                                                      ToolTip="{DynamicResource L099}" />
+                                            <Grid Margin="0,4,0,12">
+                                                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                                <TextBlock Text="{DynamicResource L098}" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                                <ComboBox x:Name="LanguageChoice" Grid.Column="1" MinHeight="40" MaxWidth="240" HorizontalAlignment="Left" MinWidth="190" Style="{StaticResource CustomComboBoxStyle}"/>
+                                            </Grid>
+                                            <TextBlock Text="{DynamicResource L100}" FontSize="13" Margin="0,0,0,12" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap"/>
+
+                                            <CheckBox x:Name="CbAutoUpdate" Content="{DynamicResource L044}"
+                                                      MinHeight="40" Style="{StaticResource CustomCheckBoxStyle}"
+                                                      ToolTip="{DynamicResource L045}" />
+                                            <CheckBox x:Name="CbThemeIssue" Content="{DynamicResource L046}"
+                                                      MinHeight="40" Style="{StaticResource CustomCheckBoxStyle}"
+                                                      ToolTip="{DynamicResource L047}" />
+                                            <CheckBox x:Name="CbSaveClosedHistory" Content="{DynamicResource L048}"
+                                                      MinHeight="40" Style="{StaticResource CustomCheckBoxStyle}"
+                                                      ToolTip="{DynamicResource L049}" />
+                                            <CheckBox x:Name="CbRestorePreviousWindows" Content="{DynamicResource L050}"
+                                                      MinHeight="40" Style="{StaticResource CustomCheckBoxStyle}"
+                                                      ToolTip="{DynamicResource L051}" />
+                                            <CheckBox x:Name="CbHideTrayIcon" Content="{DynamicResource L052}"
+                                                      MinHeight="40" Style="{StaticResource CustomCheckBoxStyle}"
+                                                      ToolTip="{DynamicResource L053}" />
                                         </StackPanel>
                                     </GroupBox>
+                                    <TextBlock x:Name="PreferencesStatus" TextWrapping="Wrap" Margin="8,12,8,0" FontSize="13" Foreground="{StaticResource TextAccentBrush}"/>
                                 </StackPanel>
+                                </ScrollViewer>
                             </TabItem>
 
                             <!-- About Tab -->
-                            <TabItem Header="About" Visibility="Collapsed">
+                            <TabItem Header="{DynamicResource L054}" Visibility="Collapsed">
                                 <local:AboutView />
                             </TabItem>
                         </TabControl>
@@ -262,7 +278,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="Window Hook" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L055}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
 
                         <!-- Reuse Tabs Status -->
@@ -286,7 +302,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="Reuse Tabs" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L056}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
 
                         <!-- Keyboard Hook Status -->
@@ -310,7 +326,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="Keyboard Hook" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L057}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
 
                         <!-- Mouse Hook Status -->
@@ -334,7 +350,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="Mouse Hook" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L058}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
                     </StackPanel>
             </Border>

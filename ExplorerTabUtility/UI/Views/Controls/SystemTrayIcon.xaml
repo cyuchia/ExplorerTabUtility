@@ -1,5 +1,5 @@
 <UserControl x:Class="ExplorerTabUtility.UI.Views.Controls.SystemTrayIcon"
-             xmlns:managers="clr-namespace:ExplorerTabUtility.Managers"
+        Language="{DynamicResource UiLanguage}"             xmlns:managers="clr-namespace:ExplorerTabUtility.Managers"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:tb="http://www.hardcodet.net/taskbar"
@@ -16,7 +16,7 @@
                 <MenuItem Name="KeyboardHookMenu"
                           IsCheckable="False"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.IsKeyboardHookActive}, Mode=OneTime}"
-                          ToolTip="Enable or disable keyboard shortcuts">
+                          ToolTip="{DynamicResource L060}">
                     <MenuItem.Header>
                         <Grid>
                             <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=Command}"
@@ -26,11 +26,11 @@
                                       Margin="-35,0,0,0"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
-                            <TextBlock Text="Keyboard Hook" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L057}" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
                         </Grid>
                     </MenuItem.Header>
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE8AC;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8AC;" FontSize="14" />
                     </MenuItem.Icon>
                     <!-- Submenu items for keyboard profiles (in code-behind) -->
                 </MenuItem>
@@ -39,7 +39,7 @@
                 <MenuItem Name="MouseHookMenu"
                           IsCheckable="False"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.IsMouseHookActive}, Mode=OneTime}"
-                          ToolTip="Enable or disable mouse shortcuts">
+                          ToolTip="{DynamicResource L061}">
                     <MenuItem.Header>
                         <Grid>
                             <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=Command}"
@@ -49,68 +49,68 @@
                                       Margin="-35,0,0,0"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
-                            <TextBlock Text="Mouse Hook" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L058}" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
                         </Grid>
                     </MenuItem.Header>
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE962;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE962;" FontSize="14" />
                     </MenuItem.Icon>
                     <!-- Submenu items for mouse profiles (in code-behind) -->
                 </MenuItem>
 
                 <!-- Window Hook -->
-                <MenuItem Header="Window Hook"
+                <MenuItem Header="{DynamicResource L055}"
                           Name="WindowHook"
                           StaysOpenOnClick="True"
                           IsCheckable="True"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.IsWindowHookActive}, Mode=OneTime}"
-                          ToolTip="Toggle automatic redirection of new Explorer windows to tabs">
+                          ToolTip="{DynamicResource L062}">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE8A7;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8A7;" FontSize="14" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <!-- Reuse Tabs -->
-                <MenuItem Header="Reuse Tabs"
+                <MenuItem Header="{DynamicResource L056}"
                           Name="ReuseTabs"
                           StaysOpenOnClick="True"
                           IsCheckable="True"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.ReuseTabs}, Mode=OneTime}"
-                          ToolTip="When enabled, navigates to existing tabs instead of opening duplicate tabs">
+                          ToolTip="{DynamicResource L063}">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE8EE;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8EE;" FontSize="14" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <Separator />
 
                 <!-- Add to startup -->
-                <MenuItem Header="Add to startup"
+                <MenuItem Header="{DynamicResource L064}"
                           Name="AddToStartup"
                           StaysOpenOnClick="True"
                           IsCheckable="True"
                           IsChecked="{Binding Source={x:Static managers:RegistryManager.IsStartupEnabled}, Mode=OneTime}"
-                          ToolTip="Automatically start Explorer Tab Utility when Windows starts">
+                          ToolTip="{DynamicResource L065}">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE7F4;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE7F4;" FontSize="14" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <!-- Check for updates -->
                 <MenuItem x:Name="CheckForUpdates"
-                          Header="Check for updates"
-                          ToolTip="Check if a newer version of Explorer Tab Utility is available">
+                          Header="{DynamicResource L066}"
+                          ToolTip="{DynamicResource L067}">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE896;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE896;" FontSize="14" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <!-- Settings -->
                 <MenuItem x:Name="OpenSettings"
-                          Header="Settings"
-                          ToolTip="Open the settings window to configure the application">
+                          Header="{DynamicResource L068}"
+                          ToolTip="{DynamicResource L069}">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE713;" FontSize="14" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE713;" FontSize="14" />
                     </MenuItem.Icon>
                 </MenuItem>
 
@@ -118,10 +118,10 @@
 
                 <!-- Exit -->
                 <MenuItem x:Name="ExitApplication"
-                          Header="Exit"
-                          ToolTip="Close Explorer Tab Utility and stop all hooks">
+                          Header="{DynamicResource L070}"
+                          ToolTip="{DynamicResource L071}">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xE7E8;" FontSize="14" Foreground="{StaticResource DangerBrush}" />
+                        <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE7E8;" FontSize="14" Foreground="{StaticResource DangerBrush}" />
                     </MenuItem.Icon>
                 </MenuItem>
             </ContextMenu>

@@ -29,7 +29,7 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Padding" Value="10,6" />
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuItem">
@@ -124,36 +124,36 @@
             <Style TargetType="Separator" BasedOn="{StaticResource TextBoxContextMenuSeparatorStyle}" />
         </ContextMenu.Resources>
 
-        <MenuItem Command="ApplicationCommands.Cut">
+        <MenuItem Header="{DynamicResource TextCut}" Command="ApplicationCommands.Cut">
             <MenuItem.Icon>
-                <TextBlock Text="&#xE8C6;" FontSize="14" />
+                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8C6;" FontSize="14" />
             </MenuItem.Icon>
         </MenuItem>
 
-        <MenuItem Command="ApplicationCommands.Copy">
+        <MenuItem Header="{DynamicResource TextCopy}" Command="ApplicationCommands.Copy">
             <MenuItem.Icon>
-                <TextBlock Text="&#xE8C8;" FontSize="14" />
+                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8C8;" FontSize="14" />
             </MenuItem.Icon>
         </MenuItem>
 
-        <MenuItem Command="ApplicationCommands.Paste">
+        <MenuItem Header="{DynamicResource TextPaste}" Command="ApplicationCommands.Paste">
             <MenuItem.Icon>
-                <TextBlock Text="&#xE77F;" FontSize="14" />
+                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE77F;" FontSize="14" />
             </MenuItem.Icon>
         </MenuItem>
 
         <Separator />
 
-        <MenuItem Command="ApplicationCommands.SelectAll">
+        <MenuItem Header="{DynamicResource TextSelectAll}" Command="ApplicationCommands.SelectAll">
             <MenuItem.Icon>
-                <TextBlock Text="&#xE8B3;" FontSize="14" />
+                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8B3;" FontSize="14" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>
 
     <!-- TextBox Style -->
     <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource DefaultFontWeight}" />
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />

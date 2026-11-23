@@ -36,6 +36,9 @@ public partial class SystemTrayIcon : UserControl, IDisposable
         _hookManager.OnWindowHookToggled += HookManager_OnWindowHookToggled;
         _hookManager.OnReuseTabsToggled += HookManager_OnReuseTabsToggled;
 
+        RegistryManager.StartupChanged += RefreshStartup;
+        UiText.Current.PropertyChanged += OnLanguageChanged;
+        TrayIcon.ContextMenu.Opened += (_, _) => RefreshStartup();
         // Populate submenus for keyboard & mouse profiles
         UpdateMenuItems(autoCheckParent: false);
     }
@@ -193,9 +196,19 @@ public partial class SystemTrayIcon : UserControl, IDisposable
 
     private void ToggleStartup()
     {
-        RegistryManager.ToggleStartup();
-        AddToStartup.IsChecked = RegistryManager.IsStartupEnabled;
+        try { RegistryManager.ToggleStartup(); }
+        catch (Exception ex) { CustomMessageBox.Show(UiText.Translate("无法保存开机启动设置：") + ex.Message, Constants.AppName); }
+        RefreshStartup();
     }
+
+    private void RefreshStartup()
+    {
+        if (!Dispatcher.CheckAccess()) { Dispatcher.BeginInvoke(new Action(RefreshStartup)); return; }
+        try { AddToStartup.IsChecked = RegistryManager.IsStartupEnabled; }
+        catch { AddToStartup.IsChecked = false; }
+    }
+    private void OnLanguageChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        => TrayIcon.ToolTipText = Constants.NotifyIconText;
 
     private void PopulateHookProfiles(MenuItem parent, IEnumerable<HotKeyProfile> profiles, bool autoCheckParent = true)
     {
@@ -244,6 +257,11 @@ public partial class SystemTrayIcon : UserControl, IDisposable
 
     public void Dispose()
     {
+        RegistryManager.StartupChanged -= RefreshStartup;
+        UiText.Current.PropertyChanged -= OnLanguageChanged;
+        _hookManager.OnShellInitialized -= HookManager_OnShellInitialized;
+        _hookManager.OnWindowHookToggled -= HookManager_OnWindowHookToggled;
+        _hookManager.OnReuseTabsToggled -= HookManager_OnReuseTabsToggled;
         TrayIcon.Dispose();
         GC.SuppressFinalize(this);
     }

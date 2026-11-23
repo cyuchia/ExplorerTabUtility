@@ -180,8 +180,8 @@ public partial class TabSearchPopup : Window
     {
         _isShowingDialog = true;
         var result = CustomMessageBox.Show(
-            "Are you sure you want to clear the closed windows history?",
-            "Confirm Clear History",
+            UiText.Translate("确定要清空已关闭窗口的记录吗？"),
+            UiText.Translate("确认清空记录"),
             MessageBoxButton.YesNo,
             MessageBoxImage.Question,
             MessageBoxResult.No);

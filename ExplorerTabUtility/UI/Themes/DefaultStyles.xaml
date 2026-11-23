@@ -3,17 +3,17 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Fonts -->
-    <FontFamily x:Key="DefaultFontFamily">Segoe UI, Segoe UI Variable, Segoe MDL2 Assets, Roboto, 'Noto Sans', Arial, sans-serif</FontFamily>
+    <FontFamily x:Key="DefaultFontFamily">Global User Interface</FontFamily>
     <FontWeight x:Key="DefaultFontWeight">Normal</FontWeight>
     <system:Double x:Key="DefaultFontSize">16</system:Double>
 
     <!-- Default style for all controls -->
     <Style TargetType="{x:Type Control}">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource DefaultFontWeight}" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
         <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
 
         <Style.Triggers>
@@ -25,11 +25,11 @@
 
     <!-- Default style for TextBlock -->
     <Style TargetType="{x:Type TextBlock}">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource DefaultFontWeight}" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
         <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
         <Setter Property="UseLayoutRounding" Value="True" />
 
@@ -42,11 +42,11 @@
 
     <!-- Default style for any element -->
     <Style TargetType="{x:Type TextElement}">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource DefaultFontWeight}" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
         <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
 
         <Style.Triggers>
@@ -58,7 +58,7 @@
 
     <!-- Default style for Tooltip -->
     <Style TargetType="{x:Type ToolTip}">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="Background" Value="{StaticResource DropdownBackgroundBrush}" />
@@ -67,8 +67,8 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="10,6" />
         <Setter Property="HasDropShadow" Value="True" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
         <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
         <Setter Property="Template">
             <Setter.Value>

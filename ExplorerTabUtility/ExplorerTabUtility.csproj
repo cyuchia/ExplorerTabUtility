@@ -32,7 +32,12 @@
         <PackageReference Include="System.Text.Json" Version="9.0.3"/>
     </ItemGroup>
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(UseGeneratedInterop)' == 'true'">
+        <Reference Include="Interop.SHDocVw"><HintPath>interop\Interop.SHDocVw.dll</HintPath><EmbedInteropTypes>true</EmbedInteropTypes></Reference>
+        <Reference Include="Interop.Shell32"><HintPath>interop\Interop.Shell32.dll</HintPath><EmbedInteropTypes>true</EmbedInteropTypes></Reference>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(UseGeneratedInterop)' != 'true'">
         <COMReference Include="SHDocVw">
             <WrapperTool>tlbimp</WrapperTool>
             <VersionMinor>1</VersionMinor>
@@ -55,6 +60,7 @@
 
     <ItemGroup>
         <Resource Include="Icon.ico"/>
+        <EmbeddedResource Include="UI\Localization\Strings.json"/>
     </ItemGroup>
 
 </Project>

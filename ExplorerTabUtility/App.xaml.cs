@@ -1,3 +1,5 @@
+using System;
+using ExplorerTabUtility.Managers;
 using System.Windows;
 using System.Threading;
 using System.Windows.Controls;
@@ -20,19 +22,29 @@ public partial class App : Application
             base.OnStartup(e);
             SetupTooltipBehavior();
 
-            _ = new MainWindow();
+            try
+            {
+                UiText.Current.Apply(SettingsManager.Language);
+                UiText.Current.StartSystemTracking();
+                _ = new MainWindow();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("无法加载 Explorer Tab Utility 设置 / Unable to load settings.\n" + error.GetBaseException().Message,
+                    Constants.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown(1);
+            }
             return;
         }
 
-        CustomMessageBox.Show("""
-                              Another instance is already running.
-                              Check in System Tray Icons.
-                              """, Constants.AppName, icon: MessageBoxImage.Information);
+        UiText.Current.Apply(SettingsManager.Language);
+        CustomMessageBox.Show(UiText.Translate("程序已经在运行。请在系统托盘中找到程序图标。"), Constants.AppName, icon: MessageBoxImage.Information);
         Shutdown();
     }
 
     protected override void OnExit(ExitEventArgs e)
     {
+        UiText.Current.StopSystemTracking();
         _mutex?.Dispose();
         base.OnExit(e);
     }

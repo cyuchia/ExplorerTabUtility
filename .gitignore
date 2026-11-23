@@ -368,3 +368,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Generated local builds, COM wrappers and verification output
+/artifacts/
+/ExplorerTabUtility/interop/
+**/evidence*/
+*.dmp
+*.etl

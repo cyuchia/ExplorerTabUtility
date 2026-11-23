@@ -15,12 +15,12 @@ namespace ExplorerTabUtility.UI.Views;
 // ReSharper disable once RedundantExtendsListEntry
 public partial class MainWindow : Window
 {
-    private readonly HookManager _hookManager;
-    private readonly ProfileManager _profileManager;
-    private readonly SystemTrayIcon _notifyIconManager;
+    private readonly HookManager _hookManager = null!;
+    private readonly ProfileManager _profileManager = null!;
+    private readonly SystemTrayIcon _notifyIconManager = null!;
     private nint _handle;
 
-    public MainWindow()
+    public MainWindow(bool preview = false)
     {
         InitializeComponent();
 
@@ -28,12 +28,14 @@ public partial class MainWindow : Window
         Width = SettingsManager.FormSize.Width;
         Height = SettingsManager.FormSize.Height;
 
+        if (preview)
+        {
+            InitializePreferences(true);
+            return;
+        }
         _profileManager = new ProfileManager(ProfilesPanel);
         _hookManager = new HookManager(_profileManager);
         _notifyIconManager = new SystemTrayIcon(_profileManager, _hookManager, ShowWindow);
-
-        SetupEventHandlers();
-        StartHooks();
 
         CbAutoUpdate.IsChecked = SettingsManager.AutoUpdate;
         CbThemeIssue.IsChecked = SettingsManager.HaveThemeIssue;
@@ -41,6 +43,9 @@ public partial class MainWindow : Window
         CbAutoSaveProfiles.IsChecked = SettingsManager.SaveProfilesOnExit;
         CbSaveClosedHistory.IsChecked = SettingsManager.SaveClosedHistory;
         CbRestorePreviousWindows.IsChecked = SettingsManager.RestorePreviousWindows;
+        InitializePreferences(false);
+        SetupEventHandlers();
+        StartHooks();
         UpdateTrayIconVisibility(false);
 
         if (SettingsManager.AutoUpdate)
@@ -201,8 +206,8 @@ public partial class MainWindow : Window
         if (isChecked && showAlert && !SettingsManager.IsTrayIconHidden)
         {
             var message = canToggleVisibility
-                ? $"You can show the app again by pressing {profile!.HotKeys!.HotKeysToString(profile.IsDoubleClick)}"
-                : "Cannot hide tray icon if no hotkey is configured to toggle visibility.";
+                ? string.Format(UiText.Translate("你可以按 {0} 再次显示设置窗口"), profile!.HotKeys!.HotKeysToString(profile.IsDoubleClick))
+                : UiText.Translate("请先设置一个用于显示或隐藏设置窗口的快捷键，然后再隐藏托盘图标。");
 
             CustomMessageBox.Show(this, message, Constants.AppName);
         }
@@ -241,8 +246,10 @@ public partial class MainWindow : Window
 
     private void OnApplicationExit(object _, ExitEventArgs __)
     {
+        DisposePreferences();
         _notifyIconManager.Dispose();
         _hookManager.Dispose();
+        SettingsManager.SaveSettings();
     }
 
     private void TitleBar_MouseLeftButtonDown(object _, MouseButtonEventArgs e)

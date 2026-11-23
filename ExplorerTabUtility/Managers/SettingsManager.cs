@@ -3,7 +3,8 @@ using System.IO;
 using System.Windows;
 using System.Text.Json;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.Threading;
 using ExplorerTabUtility.Models;
 using ExplorerTabUtility.Helpers;
 
@@ -11,202 +12,77 @@ namespace ExplorerTabUtility.Managers;
 
 public static class SettingsManager
 {
+    private static readonly object Sync = new();
+    // The in-process override is used by the isolated verification harness only.
+    private static readonly string SettingsFilePath = AppContext.GetData("ExplorerTabUtility.SettingsPath") as string
+        ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Constants.AppName, Constants.SettingsFileName);
     private static readonly AppSettings Settings;
+    private static readonly Timer ResizeSave = new(_ => SaveSettings(), null, Timeout.Infinite, Timeout.Infinite);
+    private static bool _dirty;
+    public static string? Recovery { get; }
     public static event EventHandler<PropertyChangedEventArgs>? StaticPropertyChanged;
-
-    private static readonly string SettingsFilePath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        Constants.AppName,
-        Constants.SettingsFileName);
+    public static event Action<string>? SaveFailed;
 
     static SettingsManager()
     {
-        var directory = Path.GetDirectoryName(SettingsFilePath);
-        Directory.CreateDirectory(directory!);
-
-        if (!File.Exists(SettingsFilePath))
-        {
-            Settings = new AppSettings();
-            return;
-        }
-
-        try
-        {
-            var json = File.ReadAllText(SettingsFilePath);
-            Settings = JsonSerializer.Deserialize<AppSettings>(json) ?? new AppSettings();
-        }
-        catch (Exception)
-        {
-            Settings = new AppSettings();
-        }
+        Settings = AtomicJsonFile.Load<AppSettings>(SettingsFilePath, out var recovery);
+        Recovery = recovery;
+        if (Settings.Language is not ("auto" or "zh-CN" or "en")) Settings.Language = "auto";
     }
 
-    private static void NotifyStaticPropertyChanged([CallerMemberName] string propertyName = "")
+    private static T Read<T>(Func<T> get) { lock (Sync) return get(); }
+    private static void Set<T>(Func<T> get, Action<T> set, T value, string name, bool delayed = false)
     {
-        StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
-    }
-
-    public static bool IsMouseHookActive
-    {
-        get => Settings.MouseHook;
-        set
+        lock (Sync)
         {
-            Settings.MouseHook = value;
-            SaveSettings();
-            NotifyStaticPropertyChanged();
+            if (EqualityComparer<T>.Default.Equals(get(), value)) return;
+            set(value);
+            _dirty = true;
+            if (delayed) ResizeSave.Change(300, Timeout.Infinite);
+            else SaveSettings();
         }
+        StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(name));
     }
-
-    public static bool IsKeyboardHookActive
-    {
-        get => Settings.KeyboardHook;
-        set
-        {
-            Settings.KeyboardHook = value;
-            SaveSettings();
-            NotifyStaticPropertyChanged();
-        }
-    }
-
-    public static bool IsWindowHookActive
-    {
-        get => Settings.WindowHook;
-        set
-        {
-            Settings.WindowHook = value;
-            SaveSettings();
-            NotifyStaticPropertyChanged();
-        }
-    }
-
-    public static bool ReuseTabs
-    {
-        get => Settings.ReuseTabs;
-        set
-        {
-            Settings.ReuseTabs = value;
-            SaveSettings();
-            NotifyStaticPropertyChanged();
-        }
-    }
-
-    public static string HotKeyProfiles
-    {
-        get => Settings.HotKeyProfiles;
-        set
-        {
-            Settings.HotKeyProfiles = value;
-            SaveSettings();
-        }
-    }
-
-    public static Size FormSize
-    {
-        get => Settings.FormSize;
-        set
-        {
-            Settings.FormSize = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool SaveProfilesOnExit
-    {
-        get => Settings.SaveProfilesOnExit;
-        set
-        {
-            Settings.SaveProfilesOnExit = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool IsFirstRun
-    {
-        get => Settings.IsFirstRun;
-        set
-        {
-            Settings.IsFirstRun = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool IsTrayIconHidden
-    {
-        get => Settings.IsTrayIconHidden;
-        set
-        {
-            Settings.IsTrayIconHidden = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool HaveThemeIssue
-    {
-        get => Settings.HaveThemeIssue;
-        set
-        {
-            Settings.HaveThemeIssue = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool AutoUpdate
-    {
-        get => Settings.AutoUpdate;
-        set
-        {
-            Settings.AutoUpdate = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool SaveClosedHistory
-    {
-        get => Settings.SaveClosedWindows;
-        set
-        {
-            Settings.SaveClosedWindows = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool RestorePreviousWindows
-    {
-        get => Settings.RestorePreviousWindows;
-        set
-        {
-            Settings.RestorePreviousWindows = value;
-            SaveSettings();
-        }
-    }
-
-    public static WindowRecord[]? ClosedWindows
-    {
-        get => Settings.ClosedWindows;
-        set
-        {
-            Settings.ClosedWindows = value;
-            SaveSettings();
-        }
-    }
-
+    public static bool IsMouseHookActive { get => Read(() => Settings.MouseHook); set => Set(() => Settings.MouseHook, v => Settings.MouseHook = v, value, nameof(IsMouseHookActive)); }
+    public static bool IsKeyboardHookActive { get => Read(() => Settings.KeyboardHook); set => Set(() => Settings.KeyboardHook, v => Settings.KeyboardHook = v, value, nameof(IsKeyboardHookActive)); }
+    public static bool IsWindowHookActive { get => Read(() => Settings.WindowHook); set => Set(() => Settings.WindowHook, v => Settings.WindowHook = v, value, nameof(IsWindowHookActive)); }
+    public static bool ReuseTabs { get => Read(() => Settings.ReuseTabs); set => Set(() => Settings.ReuseTabs, v => Settings.ReuseTabs = v, value, nameof(ReuseTabs)); }
+    public static string HotKeyProfiles { get => Read(() => Settings.HotKeyProfiles); set => Set(() => Settings.HotKeyProfiles, v => Settings.HotKeyProfiles = v, value, nameof(HotKeyProfiles)); }
+    public static Size FormSize { get => Read(() => Settings.FormSize); set => Set(() => Settings.FormSize, v => Settings.FormSize = v, value, nameof(FormSize), true); }
+    public static bool SaveProfilesOnExit { get => Read(() => Settings.SaveProfilesOnExit); set => Set(() => Settings.SaveProfilesOnExit, v => Settings.SaveProfilesOnExit = v, value, nameof(SaveProfilesOnExit)); }
+    public static bool IsFirstRun { get => Read(() => Settings.IsFirstRun); set => Set(() => Settings.IsFirstRun, v => Settings.IsFirstRun = v, value, nameof(IsFirstRun)); }
+    public static bool IsTrayIconHidden { get => Read(() => Settings.IsTrayIconHidden); set => Set(() => Settings.IsTrayIconHidden, v => Settings.IsTrayIconHidden = v, value, nameof(IsTrayIconHidden)); }
+    public static bool HaveThemeIssue { get => Read(() => Settings.HaveThemeIssue); set => Set(() => Settings.HaveThemeIssue, v => Settings.HaveThemeIssue = v, value, nameof(HaveThemeIssue)); }
+    public static bool AutoUpdate { get => Read(() => Settings.AutoUpdate); set => Set(() => Settings.AutoUpdate, v => Settings.AutoUpdate = v, value, nameof(AutoUpdate)); }
+    public static bool SaveClosedHistory { get => Read(() => Settings.SaveClosedWindows); set => Set(() => Settings.SaveClosedWindows, v => Settings.SaveClosedWindows = v, value, nameof(SaveClosedHistory)); }
+    public static bool RestorePreviousWindows { get => Read(() => Settings.RestorePreviousWindows); set => Set(() => Settings.RestorePreviousWindows, v => Settings.RestorePreviousWindows = v, value, nameof(RestorePreviousWindows)); }
+    public static WindowRecord[]? ClosedWindows { get => Read(() => Settings.ClosedWindows); set => Set(() => Settings.ClosedWindows, v => Settings.ClosedWindows = v, value, nameof(ClosedWindows)); }
+    public static string Language { get => Read(() => Settings.Language); set => Set(() => Settings.Language, v => Settings.Language = v, value, nameof(Language)); }
 
     public static void SaveSettings()
     {
-        try
+        lock (Sync)
         {
-            var json = JsonSerializer.Serialize(Settings);
-            File.WriteAllText(SettingsFilePath, json);
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Debug.WriteLine($"Failed to save settings: {ex.Message}");
+            if (!_dirty) return;
+            try
+            {
+                AtomicJsonFile.Save(SettingsFilePath, JsonSerializer.Serialize(Settings));
+                _dirty = false;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or JsonException)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to save settings: {ex.Message}");
+                SaveFailed?.Invoke(ex.Message);
+            }
         }
     }
 }
 
 internal class AppSettings
 {
+    public string Language { get; set; } = "auto";
+    [System.Text.Json.Serialization.JsonExtensionData]
+    public System.Collections.Generic.Dictionary<string, JsonElement>? Extra { get; set; }
     public bool MouseHook { get; set; }
     public bool KeyboardHook { get; set; } = true;
     public bool WindowHook { get; set; } = true;
