@@ -1,5 +1,9 @@
 # Explorer Tab Utility
 
+[简体中文](README.zh-CN.md) · [Build and test](docs/BUILDING.md) · [Validation scope](docs/VALIDATION.md)
+
+This fork adds English/Simplified Chinese language switching, system typography, a startup preference, recoverable settings writes, and more reliable external file selection. An [optional native bridge](docs/NATIVE-BRIDGE.md) guards temporary Explorer windows before presentation. It is installed separately; the upstream installers below do not contain these changes.
+
 > [!TIP]
 > Force new File Explorer windows to open as tabs in Windows 11, making your workflow cleaner and more organized!
 
